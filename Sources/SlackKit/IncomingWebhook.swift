@@ -1,4 +1,5 @@
 import Foundation
+import BlockKit
 
 /// There are a few ways for apps to send, retrieve, and modify Slack messages, and if you're a beginner with that, you should read our managing messages overview.
 ///
@@ -6,7 +7,7 @@ import Foundation
 /// This is a JSON object that is used to define metadata about the message, such as where it should be published, as well as its visual composition.
 ///
 /// If you're using the Web API to send messages, you'll also need to specify the channel where the message should be published.
-public struct Message: Encodable {
+public struct IncomingWebhook: Encodable {
     /// The usage of this field changes depending on whether you're using blocks or not.
     /// If you are, this is used as a fallback string to display in notifications.
     /// If you aren't, this is the main body text of the message. It can be formatted as plain text, or with mrkdwn.

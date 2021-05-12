@@ -10,14 +10,21 @@ let package = Package(
     ],
     products: [
         .library(name: "TeamsKit", targets: ["TeamsKit"]),
-        .library(name: "SlackKit", targets: ["SlackKit"]),
+        .library(name: "SlackKit", targets: ["SlackKit", "BlockKit"]),
+        .library(name: "QuillKit", targets: ["QuillKit", "BlockKit"]),
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-crypto.git", from: "1.1.0")
     ],
     targets: [
-        .target(name: "SlackKit", dependencies: [
+        .target(name: "BlockKit", dependencies: [
             
+        ]),
+        .target(name: "SlackKit", dependencies: [
+            .target(name: "BlockKit")
+        ]),
+        .target(name: "QuillKit", dependencies: [
+            .target(name: "BlockKit")
         ]),
         .target(name: "TeamsKit", dependencies: [
             .product(name: "Crypto", package: "swift-crypto")
