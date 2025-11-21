@@ -93,7 +93,7 @@ public struct O365ConnectorCard: CardType {
 }
 
 extension O365ConnectorCard {
-    public struct Section: Codable {
+    public struct Section: Codable, Sendable {
         /// The title property of a section is displayed in a font that stands out while not as prominent as the card's title.
         /// It is meant to introduce the section and summarize its content, similarly to how the card's title property is meant to summarize the whole card.
         public let title: String?
@@ -152,7 +152,7 @@ extension O365ConnectorCard {
 }
 
 extension O365ConnectorCard {
-    public enum ActionType: String, Codable {
+    public enum ActionType: String, Codable, Sendable {
         case openUri = "OpenUri"
         case httpPost = "HttpPOST"
         case actionCard = "ActionCard"
@@ -160,7 +160,7 @@ extension O365ConnectorCard {
         case invokeAddInCommand = "InvokeAddInCommand"
     }
     
-    public enum Action: Codable {
+    public enum Action: Codable, Sendable {
         case openUri(OpenUriAction)
         case httpPost(HTTPPostAction)
         case actionCard(ActionCardAction)
@@ -221,7 +221,7 @@ extension O365ConnectorCard {
     ///  - Consider using an OpenUri action rather than a link in Markdown if there is a clear advantage for your users in their ability to open the link in an app on their mobile device.
     ///  - Do include at least an OpenUri action to view the entity in the external app it comes from.
     ///  - Do make the OpenUri action the last one in the potentialAction collection.
-    public struct OpenUriAction: Codable {
+    public struct OpenUriAction: Codable, Sendable {
         public let type: ActionType
         /// The name property defines the text that will be displayed on screen for the action.
         public let name: String
@@ -240,7 +240,7 @@ extension O365ConnectorCard {
             case targets
         }
         
-        public struct Target: Codable {
+        public struct Target: Codable, Sendable {
             public let os: OS
             public let uri: URL
             
@@ -249,7 +249,7 @@ extension O365ConnectorCard {
                 self.uri = uri
             }
             
-            public enum OS: String, Codable {
+            public enum OS: String, Codable, Sendable {
                 case `default`
                 case windows
                 case ios = "iOS"
@@ -285,7 +285,7 @@ extension O365ConnectorCard {
     /// To refresh a card as a result of an HttpPOST action, a service needs to do the following:
     ///  - Include the JSON payload of the new card in the body of the response to the HTTP POST request it received.
     ///  - Add the CARD-UPDATE-IN-BODY: true HTTP header to the response, in order to let the receiving client know that it should parse the response body and extract a new card (this is to avoid unnecessary processing when no refresh card is included.)
-    public struct HTTPPostAction: Codable {
+    public struct HTTPPostAction: Codable, Sendable {
         public let type: ActionType
         /// The name property defines the text that will be displayed on screen for the action.
         public let name: String
@@ -331,7 +331,7 @@ extension O365ConnectorCard {
         }
         
         /// The Header object is a name/value pair that represents an HTTP header.
-        public struct Header: Codable {
+        public struct Header: Codable, Sendable {
             /// The header name
             public let name: String
             /// The header value
@@ -378,7 +378,7 @@ extension O365ConnectorCard {
     ///   ]
     /// }
     /// ```
-    public struct ActionCardAction: Codable {
+    public struct ActionCardAction: Codable, Sendable {
         public let type: ActionType
         /// The name property defines the text that will be displayed on screen for the action.
         public let name: String
@@ -407,7 +407,7 @@ extension O365ConnectorCard {
         }
     }
     
-    public struct ViewAction: Codable {
+    public struct ViewAction: Codable, Sendable {
         public let type: ActionType
         public let name: String
         public let target: [URL]
@@ -445,7 +445,7 @@ extension O365ConnectorCard {
     ///   }
     /// }
     /// ```
-    public struct InvokeAddInCommandAction: Codable {
+    public struct InvokeAddInCommandAction: Codable, Sendable {
 //        public let type: ActionType
 //        /// The name property defines the text that will be displayed on screen for the action.
 //        public let name: String
@@ -462,7 +462,7 @@ extension O365ConnectorCard {
 
 extension O365ConnectorCard.Section {
     /// Defines an image as used by the heroImage and images property of a section.
-    public struct Image: Codable {
+    public struct Image: Codable, Sendable {
         /// The URL to the image.
         public let image: URL
         /// A short description of the image.
@@ -478,7 +478,7 @@ extension O365ConnectorCard.Section {
     }
     
     /// Defines a key-value pair that contains a fact.
-    public struct Fact: Codable {
+    public struct Fact: Codable, Sendable {
         /// Name of the fact. For example, Check-in.
         public let name: String
         /// Value of the fact. For example, 10 October 2016.
@@ -519,7 +519,7 @@ extension O365ConnectorCard.ActionCardAction {
     ///   ]
     /// }
     /// ```
-    public enum Input: Codable {
+    public enum Input: Codable, Sendable {
         case text(TextInput)
         case date(DateInput)
         case multichoice(MultichoiceInput)
@@ -547,7 +547,7 @@ extension O365ConnectorCard.ActionCardAction {
             case type = "@type"
         }
         
-        public enum InputType: String, Codable {
+        public enum InputType: String, Codable, Sendable {
             case text = "TextInput"
             case date = "DateInput"
             case multichoice = "MultichoiceInput"
@@ -602,7 +602,7 @@ extension O365ConnectorCard.ActionCardAction.Input {
     ///   "title": "Input's title property"
     /// }
     /// ```
-    public struct TextInput: Codable {
+    public struct TextInput: Codable, Sendable {
         /// must be TextInput, DateInput, or MultichoiceInput
         public let type: InputType
         /// Uniquely identifies the input so it is possible to reference it in the URL or body of an HttpPOST action. See Input value substitution.
@@ -655,7 +655,7 @@ extension O365ConnectorCard.ActionCardAction.Input {
     ///   "title": "Input's title property"
     /// }
     /// ```
-    public struct DateInput: Codable {
+    public struct DateInput: Codable, Sendable {
         /// must be TextInput, DateInput, or MultichoiceInput
         public let type: InputType
         /// Uniquely identifies the input so it is possible to reference it in the URL or body of an HttpPOST action. See Input value substitution.
@@ -710,7 +710,7 @@ extension O365ConnectorCard.ActionCardAction.Input {
     ///   ]
     /// }
     /// ```
-    public struct MultichoiceInput: Codable {
+    public struct MultichoiceInput: Codable, Sendable {
         /// must be TextInput, DateInput, or MultichoiceInput
         public let type: InputType
         /// Uniquely identifies the input so it is possible to reference it in the URL or body of an HttpPOST action. See Input value substitution.
@@ -759,12 +759,12 @@ extension O365ConnectorCard.ActionCardAction.Input {
             case style
         }
         
-        public enum Style: String, Codable {
+        public enum Style: String, Codable, Sendable {
             case normal
             case expanded
         }
         
-        public struct Choice: Codable {
+        public struct Choice: Codable, Sendable {
             public let display: String
             public let value: String
             

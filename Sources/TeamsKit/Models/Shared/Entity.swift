@@ -1,6 +1,6 @@
 import Foundation
 
-public enum EntityType: String, Codable {
+public enum EntityType: String, Codable, Sendable {
     /// decoded from teams is `mention`, but needs to be `Mention` when encoded back
     case mention
     case clientInfo
@@ -9,7 +9,7 @@ public enum EntityType: String, Codable {
 }
 
 /// Metadata object pertaining to an activity.
-public enum Entity: Codable {
+public enum Entity: Codable, Sendable {
     case mention(Mention)
     case clientInfo(ClientInfo)
     case place(Place)
@@ -62,7 +62,7 @@ public enum Entity: Codable {
 }
 
 extension Entity {
-    public struct ClientInfo: Codable {
+    public struct ClientInfo: Codable, Sendable {
         public let type: EntityType
         public let locale: String
         public let country: String
@@ -81,7 +81,7 @@ extension Entity {
 
 extension Entity {
     /// Defines a user or bot that was mentioned in the conversation.
-    public struct Mention: Codable {
+    public struct Mention: Codable, Sendable {
         /// A ChannelAccount object that specifies the user or the bot that was mentioned.
         public let mentioned: ChannelAccount
         /// The user or bot as mentioned in the conversation.
@@ -101,7 +101,7 @@ extension Entity {
 
 extension Entity {
     /// Defines a geographical location using World Geodetic System (WSG84) coordinates.
-    public struct GeoCoordinates: Codable {
+    public struct GeoCoordinates: Codable, Sendable {
         /// Elevation of the location.
         public let elevation: Double
         /// Latitude of the location.
@@ -125,7 +125,7 @@ extension Entity {
 
 extension Entity {
     /// Defines a place that was mentioned in the conversation.
-    public struct Place: Codable {
+    public struct Place: Codable, Sendable {
         /// Address of a place. This property can be a string or a complex object of type PostalAddress.
         public let address: Address
         /// A GeoCoordinates object that specifies the geographical coordinates of the place.
@@ -145,7 +145,7 @@ extension Entity {
             self.type = "Place"
         }
         
-        public enum HasMap: Codable {
+        public enum HasMap: Codable, Sendable {
             case url(URL)
             case map(Map)
             
@@ -161,10 +161,10 @@ extension Entity {
                 self = .url(try URL(from: decoder))
             }
             
-            public struct Map: Codable {}
+            public struct Map: Codable, Sendable {}
         }
         
-        public enum Address: Codable {
+        public enum Address: Codable, Sendable {
             case string(String)
             case address(PostalAddress)
             
@@ -180,7 +180,7 @@ extension Entity {
                 self = .string(try String(from: decoder))
             }
             
-            public struct PostalAddress: Codable {}
+            public struct PostalAddress: Codable, Sendable {}
         }
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines a response to Create Conversation.
-public struct ConversationResourceResponse: Decodable {
+public struct ConversationResourceResponse: Decodable, Sendable {
     /// ID of the activity, if sent.
     public let activityId: String?
     /// ID of the resource.

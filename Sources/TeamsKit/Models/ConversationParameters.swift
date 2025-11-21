@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines parameters for creating a new conversation.
-public struct ConversationParameters: Encodable {
+public struct ConversationParameters: Encodable, Sendable {
     /// The initial message to send to the conversation when it is created.
     public let activity: Activity
     /// Channel account information needed to route a message to the bot.

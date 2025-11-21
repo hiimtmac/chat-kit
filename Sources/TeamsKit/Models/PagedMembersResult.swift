@@ -1,7 +1,7 @@
 import Foundation
 
 /// Page of members returned by Get Conversation Paged Members.
-public struct PagedMembersResult: Decodable {
+public struct PagedMembersResult: Decodable, Sendable {
     /// The continuation token that can be used in subsequent calls to Get Conversation Paged Members.
     public let continuationToken: String
     /// An array of conversation members.

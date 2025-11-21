@@ -53,7 +53,7 @@ public struct ReceiptCard: CardType {
 
 extension ReceiptCard {
     /// Defines a key-value pair that contains a fact.
-    public struct Fact: Codable {
+    public struct Fact: Codable, Sendable {
         /// Name of the fact. For example, Check-in.
         /// The key is used as a label when displaying the fact's value.
         public let key: String
@@ -69,7 +69,7 @@ extension ReceiptCard {
 
 extension ReceiptCard {
     /// Defines a line item within a receipt.
-    public struct ReceiptItem: Codable {
+    public struct ReceiptItem: Codable, Sendable {
         /// A CardImage object that specifies thumbnail image to display next to the line item.
         public let image: CardImage
         /// A currency-formatted string that specifies the total price of all units purchased.

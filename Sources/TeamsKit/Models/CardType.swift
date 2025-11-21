@@ -1,3 +1,3 @@
 import Foundation
 
-public protocol CardType: Codable {}
+public protocol CardType: Codable, Sendable {}

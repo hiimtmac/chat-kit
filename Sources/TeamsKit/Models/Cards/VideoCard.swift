@@ -3,7 +3,7 @@ import Foundation
 /// Defines a card that can play videos.
 ///
 ///  - Teams: ✖
-public struct VideoCard: CardType {    
+public struct VideoCard: CardType, Sendable {    
     /// Aspect ratio of the video. Either 16:9 or 4:3.
     public let aspect: AspectRatio
     /// Flag that indicates whether to replay the list of videos when the last one ends.

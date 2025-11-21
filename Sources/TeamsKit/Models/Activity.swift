@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines a message that is exchanged between bot and user.
-public struct Activity: Codable {
+public struct Activity: Codable, Sendable {
     /// Type of activity.
     public let type: ActivityType
     /// An ID that uniquely identifies the channel. Set by the channel.
@@ -460,21 +460,21 @@ extension Activity {
 }
 
 extension Activity {
-    public enum Action: String, Codable {
+    public enum Action: String, Codable, Sendable {
         case add
         case remove
     }
 }
 
 extension Activity {
-    public enum DeliveryMode: String, Codable {
+    public enum DeliveryMode: String, Codable, Sendable {
         case normal
         case notification
     }
 }
  
 extension Activity {
-    public enum InputHint: String, Codable {
+    public enum InputHint: String, Codable, Sendable {
         case acceptingInput
         case expectingInput
         case ignoringInput
@@ -482,7 +482,7 @@ extension Activity {
 }
 
 extension Activity {
-    public enum TextFormat: String, Codable {
+    public enum TextFormat: String, Codable, Sendable {
         case markdown
         case plain
         case xml
@@ -490,7 +490,7 @@ extension Activity {
 }
  
 extension Activity {
-    public enum ActivityType: String, Codable {
+    public enum ActivityType: String, Codable, Sendable {
         case message
         case contactRelationUpdate
         case conversationUpdate
@@ -510,7 +510,7 @@ extension Activity {
 }
 
 extension Activity {
-    public enum AttachmentLayout: String, Codable {
+    public enum AttachmentLayout: String, Codable, Sendable {
         case carousel
         case list
     }
@@ -518,7 +518,7 @@ extension Activity {
 
 extension Activity {
     /// Refers to a substring of content within another field.
-    public struct TextHighlight: Codable {
+    public struct TextHighlight: Codable, Sendable {
         /// Occurrence of the text field within the referenced text, if multiple exist.
         public let occurrence: Int
         /// Defines the snippet of text to highlight.
@@ -533,7 +533,7 @@ extension Activity {
 
 extension Activity {
     /// Defines the options from which a user can choose.
-    public struct SuggestedActions: Codable {
+    public struct SuggestedActions: Codable, Sendable {
         /// Array of CardAction objects that define the suggested actions.
         public let actions: [CardAction]
         /// Array of strings that contains the IDs of the recipients to whom the suggested actions should be displayed.
@@ -548,7 +548,7 @@ extension Activity {
 
 extension Activity {
     /// Defines a reference to a programmatic action.
-    public struct SemanticAction: Codable {
+    public struct SemanticAction: Codable, Sendable {
         /// An object where the value of each property is an Entity object.
         public let entities: [String: Entity]
         /// ID of this action.
@@ -563,7 +563,7 @@ extension Activity {
             self.state = state
         }
         
-        public enum State: String, Codable {
+        public enum State: String, Codable, Sendable {
             case start
             case `continue`
             case done
@@ -573,7 +573,7 @@ extension Activity {
 
 extension Activity {
     /// Defines a reaction to a message.
-    public struct MessageReaction: Codable {
+    public struct MessageReaction: Codable, Sendable {
         /// Type of reaction.
         public let type: String
         

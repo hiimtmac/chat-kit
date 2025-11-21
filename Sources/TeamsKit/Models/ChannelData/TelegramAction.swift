@@ -1,7 +1,7 @@
 import Foundation
 
 /// Perform Telegram-specific actions, such as sharing a voice memo or a sticker
-public struct TelegramAction: Encodable {
+public struct TelegramAction: Encodable, Sendable {
     /// The Telegram Bot API method to call.
     public let method: Method
     /// The parameters of the specified method.
@@ -14,12 +14,12 @@ public struct TelegramAction: Encodable {
 }
 
 extension TelegramAction {
-    public struct Parameters: Encodable {
+    public struct Parameters: Encodable, Sendable {
         // https://docs.microsoft.com/en-us/previous-versions/azure/bot-service/rest-api/bot-framework-rest-connector-channeldata?view=azure-bot-service-3.0#create-a-telegram-message
         // https://core.telegram.org/bots/api#available-methods
     }
     
-    public enum Method: String, Encodable {
+    public enum Method: String, Encodable, Sendable {
         case answerInlineQuery
         case editMessageCaption
         case editMessageReplyMarkup

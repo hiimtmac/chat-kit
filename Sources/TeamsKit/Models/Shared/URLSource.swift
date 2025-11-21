@@ -1,6 +1,6 @@
 import Foundation
 
-public enum URLSource: Codable {
+public enum URLSource: Codable, Sendable {
     /// URL to the source of the image
     case url(URL)
     /// base64 binary of the image (for example, data:image/png;base64,iVBORw0KGgo...).

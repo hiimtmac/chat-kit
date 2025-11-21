@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines the URL to an image's source.
-public struct ThumbnailUrl: Codable {
+public struct ThumbnailUrl: Codable, Sendable {
     /// Description of the image.
     /// You should include the description to support accessibility.
     public let alt: String?

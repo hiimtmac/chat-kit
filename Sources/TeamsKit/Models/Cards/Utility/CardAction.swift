@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines a clickable action with a button.
-public struct CardAction: Codable {
+public struct CardAction: Codable, Sendable {
     /// Channel-specific data associated with this action.
     public let channelData: String?
     /// Text to display in the chat feed if the button is clicked.
@@ -58,7 +58,7 @@ public struct CardAction: Codable {
 }
 
 extension CardAction {
-    public enum CardActionType: String, Codable {
+    public enum CardActionType: String, Codable, Sendable {
         case messageBack
         /// URL to be opened in the built-in browser
         case openUrl

@@ -3,7 +3,7 @@ import Foundation
 /// Some channels provide features that cannot be implemented by using only message text and attachments.
 /// To implement channel-specific functionality, you can pass native metadata to a channel in the [Activity[]] object's channelData property.
 /// For example, your bot can use the channelData property to instruct Telegram to send a sticker or to instruct Office365 to send an email.
-public enum ChannelData: Codable {
+public enum ChannelData: Codable, Sendable {
     case teams(TeamsChannelData)
     /// Send and receive an email that contains body, subject, and importance metadata
     case email(Email)

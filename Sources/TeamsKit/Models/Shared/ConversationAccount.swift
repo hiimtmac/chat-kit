@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines a conversation in a channel.
-public struct ConversationAccount: Codable {
+public struct ConversationAccount: Codable, Sendable {
     /// This account's object ID within Azure Active Directory (AAD).
     public let aadObjectId: String?
     /// Indicates the type of the conversation in channels that distinguish between conversation types (e.g. group, personal).
@@ -31,7 +31,7 @@ public struct ConversationAccount: Codable {
         self.name = name
     }
     
-    public enum ConversationType: String, Codable {
+    public enum ConversationType: String, Codable, Sendable {
         case group
         case personal
         case channel

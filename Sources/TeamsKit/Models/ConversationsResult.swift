@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines the result of Get Conversations.
-public struct ConversationsResult: Decodable {
+public struct ConversationsResult: Decodable, Sendable {
     /// The members in each of the conversations.
     public let conversations: [ConversationMembers]
     /// The continuation token that can be used in subsequent calls to Get Conversations.
@@ -15,7 +15,7 @@ public struct ConversationsResult: Decodable {
 
 extension ConversationsResult {
     /// Defines the members of a conversation.
-    public struct ConversationMembers: Decodable {
+    public struct ConversationMembers: Decodable, Sendable {
         /// The conversation ID.
         public let id: String
         /// List of members in this conversation.

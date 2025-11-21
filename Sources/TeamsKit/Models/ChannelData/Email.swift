@@ -2,7 +2,7 @@ import Foundation
 
 /// Send and receive an email that contains body, subject, and importance metadata
 /// To create an email message, set the Activity object's channelData property to a JSON object that contains these properties:
-public struct Email: Encodable {
+public struct Email: Encodable, Sendable {
     /// The HTML to use for the body of the message.
     public let htmlBody: String
     /// The subject to use for the message.

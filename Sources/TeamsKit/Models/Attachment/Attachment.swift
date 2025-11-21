@@ -3,7 +3,7 @@ import Foundation
 /// Defines additional information to include in the message.
 /// An attachment may be a file (such as an image, audio, or video) or a rich card.
 /// A7100: Senders SHOULD NOT include both content and contentUrl fields in a single attachment.
-public struct Attachment: Codable {
+public struct Attachment: Codable, Sendable {
     /// The content of the attachment.
     public let content: Content?
     /// The media type of the content in the attachment.
@@ -180,7 +180,7 @@ public struct Attachment: Codable {
         self.thumbnailUrl = try container.decodeIfPresent(URL.self, forKey: .thumbnailUrl)
     }
 
-    public enum Content: Encodable {
+    public enum Content: Encodable, Sendable {
         case other(String)
         case list(ListCard)
         case adaptive(AdaptiveCard)

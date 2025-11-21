@@ -1,6 +1,6 @@
 import Foundation
 
-public struct TeamsChannelData: Codable {
+public struct TeamsChannelData: Codable, Sendable {
     public let teamsChannelId: String
     public let teamsTeamId: String
     public let channel: ID

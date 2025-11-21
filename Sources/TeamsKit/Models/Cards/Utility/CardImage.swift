@@ -1,6 +1,6 @@
 import Foundation
 
-public struct CardImage: Codable {
+public struct CardImage: Codable, Sendable {
     /// Description of the image.
     /// You should include the description to support accessibility.
     public let alt: String?
