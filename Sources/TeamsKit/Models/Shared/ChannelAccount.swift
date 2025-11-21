@@ -1,7 +1,7 @@
 import Foundation
 
 /// Defines a bot or user account on the channel.
-public struct ChannelAccount: Codable {
+public struct ChannelAccount: Codable, Sendable {
     /// This account's object ID within Azure Active Directory.
     public let aadObjectId: String?
     /// Unique ID for the user or bot on this channel.
